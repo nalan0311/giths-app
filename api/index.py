@@ -56,7 +56,7 @@ app = Flask(__name__, template_folder='../templates')
 def home():
     return render_template('index.html')
 
-@app.route('/get_time_table', methods=["POST"])
+@app.route('/get_time_table', methods=["POST", "GET"])
 def getTimeTable():
     base_date = datetime.now()  # 여기 날짜 집어넣으면 바뀜 datetine.now() >> "20251111" 이런식으로
     monday_obj = base_date - timedelta(days=base_date.weekday())
@@ -105,4 +105,5 @@ def getTimeTable():
     return render_template('index.html', lunch_of_today = "오늘은 급식이 없습니다", **content, selected_grade=grade, selected_class=class_num)
 
 if __name__ == "__main__":
+
     app.run(debug=True)
